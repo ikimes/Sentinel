@@ -1,0 +1,315 @@
+:root {
+    color-scheme: light dark;
+    --headline: "Bahnschrift", "Aptos Display", "Segoe UI Variable", sans-serif;
+    --body: "Aptos", "Segoe UI Variable", "Trebuchet MS", sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    background: #e8e0d6;
+}
+
+body {
+    color: #1f2733;
+    font-family: var(--body);
+    margin: 0;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+button {
+    background: none;
+    border: 0;
+    color: inherit;
+}
+
+a {
+    color: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--headline);
+    letter-spacing: -0.02em;
+    margin: 0;
+}
+
+p {
+    margin: 0;
+}
+
+dl,
+ol,
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+dt {
+    color: var(--muted);
+    font-size: 0.76rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+dd {
+    margin: 0;
+}
+
+.shell-layout {
+    --bg: #f4efe8;
+    --bg-deep: #ece4d9;
+    --bg-top-glow: rgba(16, 87, 83, 0.16);
+    --bg-side-glow: rgba(161, 98, 7, 0.14);
+    --panel-static: rgba(255, 251, 246, 0.88);
+    --panel-dynamic: rgba(255, 253, 249, 0.93);
+    --panel-interactive: rgba(255, 248, 241, 0.84);
+    --panel-strong: rgba(255, 253, 250, 0.98);
+    --bubble: rgba(255, 255, 255, 0.78);
+    --line: rgba(41, 50, 68, 0.14);
+    --line-strong: rgba(16, 87, 83, 0.18);
+    --ink: #1f2733;
+    --muted: #5e697c;
+    --accent: #135c58;
+    --accent-strong: #0f4b47;
+    --accent-soft: rgba(19, 92, 88, 0.11);
+    --shadow-soft: 0 18px 45px rgba(38, 34, 29, 0.08);
+    --shadow-strong: 0 22px 54px rgba(27, 39, 55, 0.14);
+    --focus-ring: rgba(19, 92, 88, 0.28);
+    --focus-outline: #1c7c75;
+    --bevel-static-major: 14px;
+    --bevel-static-minor: 6px;
+    --bevel-dynamic-top-major: 20px;
+    --bevel-dynamic-top-minor: 8px;
+    --bevel-dynamic-bottom-major: 12px;
+    --bevel-dynamic-bottom-minor: 5px;
+    --bevel-interactive-major: 18px;
+    --bevel-interactive-minor: 8px;
+    --bevel-bubble-major: 10px;
+    --bevel-bubble-minor: 4px;
+    --role-urgency-bg: rgba(180, 83, 9, 0.12);
+    --role-urgency-border: rgba(180, 83, 9, 0.3);
+    --role-urgency-ink: #9a3412;
+    --role-blocked-bg: rgba(159, 18, 57, 0.12);
+    --role-blocked-border: rgba(159, 18, 57, 0.28);
+    --role-blocked-ink: #9f1239;
+    --role-clear-bg: rgba(22, 101, 52, 0.12);
+    --role-clear-border: rgba(22, 101, 52, 0.26);
+    --role-clear-ink: #166534;
+    --role-focus-bg: rgba(19, 92, 88, 0.12);
+    --role-focus-border: rgba(19, 92, 88, 0.34);
+    --role-focus-ink: #11534e;
+    --hero-wash: linear-gradient(140deg, rgba(19, 92, 88, 0.16), rgba(255, 252, 248, 0.94) 38%);
+    --hero-strike: rgba(19, 92, 88, 0.12);
+    background:
+        radial-gradient(circle at top left, var(--bg-top-glow), transparent 30%),
+        radial-gradient(circle at top right, var(--bg-side-glow), transparent 24%),
+        linear-gradient(180deg, #faf5ee 0%, var(--bg) 48%, var(--bg-deep) 100%);
+    color: var(--ink);
+    min-height: 100vh;
+    transition: background 180ms ease, color 180ms ease;
+}
+
+.shell-layout[data-theme-preference="system"] {
+    color-scheme: light dark;
+}
+
+.shell-layout[data-theme-preference="light"] {
+    color-scheme: light;
+}
+
+.shell-layout[data-theme-preference="dark"] {
+    --bg: #131a23;
+    --bg-deep: #0d1218;
+    --bg-top-glow: rgba(45, 212, 191, 0.12);
+    --bg-side-glow: rgba(245, 158, 11, 0.09);
+    --panel-static: rgba(18, 25, 35, 0.88);
+    --panel-dynamic: rgba(22, 30, 42, 0.94);
+    --panel-interactive: rgba(27, 35, 47, 0.9);
+    --panel-strong: rgba(26, 35, 48, 0.98);
+    --bubble: rgba(31, 43, 58, 0.86);
+    --line: rgba(143, 160, 181, 0.18);
+    --line-strong: rgba(45, 212, 191, 0.22);
+    --ink: #edf3fa;
+    --muted: #b1bfd1;
+    --accent: #79d9ce;
+    --accent-strong: #b5f4ec;
+    --accent-soft: rgba(45, 212, 191, 0.12);
+    --shadow-soft: 0 24px 56px rgba(0, 0, 0, 0.34);
+    --shadow-strong: 0 28px 70px rgba(0, 0, 0, 0.44);
+    --focus-ring: rgba(121, 217, 206, 0.2);
+    --focus-outline: #9cece0;
+    --bevel-static-major: 14px;
+    --bevel-static-minor: 6px;
+    --bevel-dynamic-top-major: 20px;
+    --bevel-dynamic-top-minor: 8px;
+    --bevel-dynamic-bottom-major: 12px;
+    --bevel-dynamic-bottom-minor: 5px;
+    --bevel-interactive-major: 18px;
+    --bevel-interactive-minor: 8px;
+    --bevel-bubble-major: 10px;
+    --bevel-bubble-minor: 4px;
+    --role-urgency-bg: rgba(251, 191, 36, 0.14);
+    --role-urgency-border: rgba(251, 191, 36, 0.34);
+    --role-urgency-ink: #fcd34d;
+    --role-blocked-bg: rgba(244, 114, 182, 0.14);
+    --role-blocked-border: rgba(244, 114, 182, 0.34);
+    --role-blocked-ink: #f9a8d4;
+    --role-clear-bg: rgba(74, 222, 128, 0.14);
+    --role-clear-border: rgba(74, 222, 128, 0.32);
+    --role-clear-ink: #86efac;
+    --role-focus-bg: rgba(45, 212, 191, 0.14);
+    --role-focus-border: rgba(45, 212, 191, 0.34);
+    --role-focus-ink: #9cece0;
+    --hero-wash: linear-gradient(140deg, rgba(45, 212, 191, 0.15), rgba(20, 29, 40, 0.92) 44%);
+    --hero-strike: rgba(45, 212, 191, 0.1);
+    background:
+        radial-gradient(circle at top left, var(--bg-top-glow), transparent 30%),
+        radial-gradient(circle at top right, var(--bg-side-glow), transparent 22%),
+        linear-gradient(180deg, #11171f 0%, var(--bg) 48%, var(--bg-deep) 100%);
+    color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+    .shell-layout[data-theme-preference="system"] {
+        --bg: #131a23;
+        --bg-deep: #0d1218;
+        --bg-top-glow: rgba(45, 212, 191, 0.12);
+        --bg-side-glow: rgba(245, 158, 11, 0.09);
+        --panel-static: rgba(18, 25, 35, 0.88);
+        --panel-dynamic: rgba(22, 30, 42, 0.94);
+        --panel-interactive: rgba(27, 35, 47, 0.9);
+        --panel-strong: rgba(26, 35, 48, 0.98);
+        --bubble: rgba(31, 43, 58, 0.86);
+        --line: rgba(143, 160, 181, 0.18);
+        --line-strong: rgba(45, 212, 191, 0.22);
+        --ink: #edf3fa;
+        --muted: #b1bfd1;
+        --accent: #79d9ce;
+        --accent-strong: #b5f4ec;
+        --accent-soft: rgba(45, 212, 191, 0.12);
+        --shadow-soft: 0 24px 56px rgba(0, 0, 0, 0.34);
+        --shadow-strong: 0 28px 70px rgba(0, 0, 0, 0.44);
+        --focus-ring: rgba(121, 217, 206, 0.2);
+        --focus-outline: #9cece0;
+        --bevel-static-major: 14px;
+        --bevel-static-minor: 6px;
+        --bevel-dynamic-top-major: 20px;
+        --bevel-dynamic-top-minor: 8px;
+        --bevel-dynamic-bottom-major: 12px;
+        --bevel-dynamic-bottom-minor: 5px;
+        --bevel-interactive-major: 18px;
+        --bevel-interactive-minor: 8px;
+        --bevel-bubble-major: 10px;
+        --bevel-bubble-minor: 4px;
+        --role-urgency-bg: rgba(251, 191, 36, 0.14);
+        --role-urgency-border: rgba(251, 191, 36, 0.34);
+        --role-urgency-ink: #fcd34d;
+        --role-blocked-bg: rgba(244, 114, 182, 0.14);
+        --role-blocked-border: rgba(244, 114, 182, 0.34);
+        --role-blocked-ink: #f9a8d4;
+        --role-clear-bg: rgba(74, 222, 128, 0.14);
+        --role-clear-border: rgba(74, 222, 128, 0.32);
+        --role-clear-ink: #86efac;
+        --role-focus-bg: rgba(45, 212, 191, 0.14);
+        --role-focus-border: rgba(45, 212, 191, 0.34);
+        --role-focus-ink: #9cece0;
+        --hero-wash: linear-gradient(140deg, rgba(45, 212, 191, 0.15), rgba(20, 29, 40, 0.92) 44%);
+        --hero-strike: rgba(45, 212, 191, 0.1);
+        background:
+            radial-gradient(circle at top left, var(--bg-top-glow), transparent 30%),
+            radial-gradient(circle at top right, var(--bg-side-glow), transparent 22%),
+            linear-gradient(180deg, #11171f 0%, var(--bg) 48%, var(--bg-deep) 100%);
+    }
+}
+
+.shell-layout :focus-visible {
+    outline: 3px solid var(--focus-outline);
+    outline-offset: 3px;
+}
+
+.shell-layout ::selection {
+    background: var(--role-focus-bg);
+}
+
+.prototype-shell .scenario-pill,
+.prototype-shell .state-pill,
+.prototype-shell .queue-signal,
+.prototype-shell .timeline-marker {
+    align-items: center;
+    background: var(--bubble);
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    color: var(--ink);
+    display: inline-flex;
+    font-size: 0.74rem;
+    font-weight: 700;
+    gap: 6px;
+    justify-content: center;
+    letter-spacing: 0.08em;
+    padding: 6px 10px;
+    text-transform: uppercase;
+}
+
+.prototype-shell .queue-signal.urgency {
+    background: var(--role-urgency-bg);
+    border-color: var(--role-urgency-border);
+    color: var(--role-urgency-ink);
+}
+
+.prototype-shell .queue-signal.blocked,
+.prototype-shell .state-pill.blocked {
+    background: var(--role-blocked-bg);
+    border-color: var(--role-blocked-border);
+    color: var(--role-blocked-ink);
+}
+
+.prototype-shell .queue-signal.clear,
+.prototype-shell .state-pill.clear {
+    background: var(--role-clear-bg);
+    border-color: var(--role-clear-border);
+    color: var(--role-clear-ink);
+}
+
+.prototype-shell .state-pill.focus {
+    background: var(--role-focus-bg);
+    border-color: var(--role-focus-border);
+    color: var(--role-focus-ink);
+}
+
+#blazor-error-ui {
+    background: var(--role-blocked-ink);
+    bottom: 0;
+    box-shadow: 0 -12px 30px rgba(0, 0, 0, 0.28);
+    color: #fff8fb;
+    display: none;
+    left: 0;
+    padding: 0.9rem 1rem;
+    position: fixed;
+    right: 0;
+    z-index: 1000;
+}
+
+#blazor-error-ui .dismiss {
+    cursor: pointer;
+    float: right;
+    font-weight: 700;
+}
+
+#blazor-error-ui .reload {
+    color: inherit;
+    font-weight: 700;
+    margin-right: 0.75rem;
+}

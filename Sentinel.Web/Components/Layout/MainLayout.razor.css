@@ -1,0 +1,24 @@
+.shell-layout {
+    min-height: 100vh;
+}
+
+.shell-main {
+    min-height: 100vh;
+}
+
+.shell-content {
+    margin: 0 auto;
+    padding: 0 0 40px;
+    width: min(1520px, calc(100vw - 32px));
+}
+
+.shell-content:focus {
+    outline: none;
+}
+
+@media (max-width: 700px) {
+    .shell-content {
+        padding-top: 0;
+        width: min(100vw - 20px, 1520px);
+    }
+}

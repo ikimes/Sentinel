@@ -1,0 +1,44 @@
+# macOS
+.DS_Store
+
+# .NET build artifacts
+**/bin/
+**/obj/
+
+# IDE/tooling
+.vs/
+*.user
+*.suo
+
+# Local diagnostics output (generated)
+diagnostics/phase2/evidence/
+diagnostics/phase3/evidence/
+diagnostics/phase3/fact-bundles/
+diagnostics/phase3/ab-isolation/
+diagnostics/rabbit-compat/evidence/
+repro/OutboxLockStallRepro/evidence/
+
+# Local tool state
+.codex/
+.playwright-cli/
+
+# Test and debugging artifacts
+**/TestResults/
+*.dmp
+*.diag
+*.trace
+
+# Playwright/manual review output
+output/
+
+# Generated diagnostics evidence and snapshots
+diagnostics/**/evidence/
+diagnostics/**/snapshots/
+diagnostics/archive/
+diagnostics/phaseA/phase3/ab-isolation/
+diagnostics/phaseA/phase3/fact-bundles/
+diagnostics/retained-evidence.json
+
+# Generated repro bundles
+repro/**/evidence/
+repro/**/package/

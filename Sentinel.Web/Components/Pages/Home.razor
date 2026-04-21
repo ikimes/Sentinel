@@ -1,0 +1,321 @@
+@page "/"
+@inherits MatterWorkspacePrototypeBase
+
+<PageTitle>Sentinel Dashboard</PageTitle>
+
+<div class="dashboard-page">
+    <section class="dashboard-top-stack">
+        <header class="dashboard-header-bar">
+            <div class="dashboard-hero-top">
+                <div class="dashboard-copy">
+                    <div class="dashboard-title-line">
+                        <h1>Sentinel Dashboard</h1>
+                        <span class="dashboard-title-separator" aria-hidden="true"></span>
+                        <p class="dashboard-kicker">Compliance coordination workspace</p>
+                    </div>
+                </div>
+
+                <button class="theme-toggle-button"
+                        type="button"
+                        title="@GetThemeToggleLabel()"
+                        aria-label="@GetThemeToggleLabel()"
+                        @onclick="ToggleTheme">
+                    @if (IsDarkTheme)
+                    {
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M12 4.75a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0V5.5a.75.75 0 0 1 .75-.75Zm0 11.25a.75.75 0 0 1 .75.75v1.75a.75.75 0 0 1-1.5 0v-1.75A.75.75 0 0 1 12 16Zm7.25-4.75a.75.75 0 0 1 0 1.5h-1.75a.75.75 0 0 1 0-1.5Zm-12.75 0a.75.75 0 0 1 0 1.5H4.75a.75.75 0 0 1 0-1.5Zm9.104-4.104a.75.75 0 0 1 1.06 1.06l-1.237 1.238a.75.75 0 0 1-1.061-1.06Zm-7.199 7.2a.75.75 0 0 1 1.061 1.06l-1.238 1.238a.75.75 0 0 1-1.06-1.06Zm8.437 1.06a.75.75 0 0 1 1.06 0l1.238 1.238a.75.75 0 0 1-1.06 1.06l-1.238-1.237a.75.75 0 0 1 0-1.061Zm-7.2-7.2a.75.75 0 0 1 1.061 0 .75.75 0 0 1 0 1.061L8.47 9.5a.75.75 0 0 1-1.06-1.06Zm2.363.844a3.75 3.75 0 1 1 0 7.5 3.75 3.75 0 0 1 0-7.5Z" />
+                        </svg>
+                    }
+                    else
+                    {
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M14.57 3.73a.75.75 0 0 1 .56 1.02 7.25 7.25 0 0 0 8.82 9.45.75.75 0 0 1 .83 1.1A9.25 9.25 0 1 1 13.44 2.95a.75.75 0 0 1 1.13.78Z" />
+                        </svg>
+                    }
+                </button>
+            </div>
+        </header>
+
+        @if (MatterQueue?.Items.Count is not 0 && Overview is not null && Timeline is not null)
+        {
+            <section class="dashboard-brief-banner @(IsBriefExpanded ? "expanded" : "collapsed")">
+                <div class="brief-banner-header">
+                    <p class="card-label">Operator brief</p>
+
+                    <div class="brief-banner-actions">
+                        <p class="brief-preview-copy">History, impact, and next step.</p>
+
+                        <button class="brief-toggle-button"
+                                type="button"
+                                aria-expanded="@IsBriefExpanded"
+                                @onclick="ToggleBrief">
+                            <span>@(IsBriefExpanded ? "Hide" : "View")</span>
+                            <svg viewBox="0 0 24 24" aria-hidden="true" class="brief-toggle-icon">
+                                <path d="M6.7 9.3a1 1 0 0 1 1.4 0L12 13.17l3.9-3.88a1 1 0 1 1 1.4 1.42l-4.6 4.58a1 1 0 0 1-1.4 0L6.7 10.7a1 1 0 0 1 0-1.4Z" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                @if (IsBriefExpanded)
+                {
+                    <div class="brief-banner-grid">
+                        <div class="brief-section">
+                            <h3>What happened</h3>
+                            <p>@BuildWhatHappened(Overview, Timeline)</p>
+                        </div>
+                        <div class="brief-section">
+                            <h3>Why it matters now</h3>
+                            <p>@BuildWhyItMatters(Overview)</p>
+                        </div>
+                        <div class="brief-section">
+                            <h3>What happens next</h3>
+                            <p>@BuildNextExpectedAction(Overview)</p>
+                        </div>
+                    </div>
+                }
+            </section>
+        }
+    </section>
+
+    <div class="dashboard-shell">
+
+    @if (!string.IsNullOrWhiteSpace(ErrorMessage))
+    {
+        <section class="dashboard-status">
+            <h2>Matter data is not available</h2>
+            <p>@ErrorMessage</p>
+        </section>
+    }
+    else if (IsLoadingQueue && MatterQueue is null)
+    {
+        <section class="dashboard-status">
+            <h2>Loading matter queue</h2>
+            <p>Connecting the workspace to the Stage 4 proof surfaces.</p>
+        </section>
+    }
+    else
+    {
+
+        <div class="dashboard-grid">
+            <aside class="dashboard-sidebar">
+                <section class="dashboard-card">
+                    <div class="queue-toolbar">
+                        <div class="queue-toolbar-heading">
+                            <h2 class="queue-toolbar-title">Queue</h2>
+                            <p class="queue-toolbar-subtitle">@GetQueueResultsText()</p>
+                        </div>
+                        <div class="queue-view-field">
+                            <select class="queue-view-select"
+                                    aria-label="Filter matter queue"
+                                    value="@SelectedQueueView"
+                                    disabled="@IsLoadingQueue"
+                                    @onchange="HandleQueueViewChanged">
+                                @foreach (var option in QueueViewOptions)
+                                {
+                                    <option value="@option.Value">@option.Label</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+
+                    @if (MatterQueue?.Items.Count is 0)
+                    {
+                        <div class="queue-section-heading">
+                            <p class="card-label">Matching matters</p>
+                            <h3>No matters in this view</h3>
+                            <p class="card-copy">This queue lens is valid, but there are no matching matters right now.</p>
+                        </div>
+                        <button class="dashboard-action-button"
+                                type="button"
+                                @onclick="ReturnToAllMattersAsync">
+                            Return to all matters
+                        </button>
+                    }
+                    else
+                    {
+                        <div class="dashboard-queue">
+                            @foreach (var item in MatterQueue?.Items ?? [])
+                            {
+                                var isSelected = item.ScenarioId == SelectedScenarioId;
+                                <button class="dashboard-queue-item @(isSelected ? "selected" : null)"
+                                        type="button"
+                                        aria-pressed="@isSelected"
+                                        @onclick="() => SelectMatterAsync(item.ScenarioId)">
+                                <div class="dashboard-queue-topline">
+                                    <span>@item.Jurisdiction</span>
+                                    <span class="@GetQueueSignalClass(item)">@GetQueueSignal(item)</span>
+                                </div>
+                                <h3>@GetMatterDisplayName(item.MatterName)</h3>
+                                <p class="queue-summary">@BuildQueueSummary(item)</p>
+                                <div class="dashboard-queue-meta">
+                                    <span class="scenario-pill">@item.Owner</span>
+                                    <span class="@GetDownstreamClass(item.DownstreamState)">@GetDownstreamLabel(item.DownstreamState)</span>
+                                </div>
+                                </button>
+                            }
+                        </div>
+                    }
+                </section>
+            </aside>
+
+            <section class="dashboard-main">
+                @if (MatterQueue?.Items.Count is 0)
+                {
+                    <section class="dashboard-status dashboard-empty-state">
+                        <h2>No matters match this queue lens</h2>
+                        <p>The selected queue lens currently returns no active matters. Pick another lens or jump back to the full queue.</p>
+                        <button class="dashboard-action-button"
+                                type="button"
+                                @onclick="ReturnToAllMattersAsync">
+                            Show all matters
+                        </button>
+                    </section>
+                }
+                else if (IsLoadingMatter || Overview is null || Timeline is null)
+                {
+                    <section class="dashboard-status">
+                        <h2>Loading selected matter</h2>
+                        <p>Refreshing the selected overview and timeline.</p>
+                    </section>
+                }
+                else
+                {
+                    <section class="dashboard-card dashboard-summary">
+                        <div class="summary-heading">
+                            <div>
+                                <p class="card-label">Selected matter</p>
+                                <h2>@GetMatterDisplayName(Overview.MatterName)</h2>
+                                <p class="card-copy">@(SelectedQueueItem is null
+                                        ? GetDownstreamLabel(Overview.DownstreamState)
+                                        : $"{GetQueueReasonLabel(SelectedQueueItem.QueueReason)} · {GetDownstreamLabel(Overview.DownstreamState)}")</p>
+                            </div>
+                            <div class="dashboard-queue-meta">
+                                <span class="@GetDownstreamClass(Overview.DownstreamState)">@GetDownstreamLabel(Overview.DownstreamState)</span>
+                                @if (SelectedQueueItem is not null)
+                                {
+                                    <span class="scenario-pill">@GetQueueReasonLabel(SelectedQueueItem.QueueReason)</span>
+                                }
+                            </div>
+                        </div>
+
+                        <div class="dashboard-metrics">
+                            <article>
+                                <span>Owner</span>
+                                <strong>@Overview.Owner</strong>
+                                <small>@BuildOwnerSupportText(Overview)</small>
+                            </article>
+                            <article>
+                                <span>Deadline</span>
+                                <strong>@BuildDeadlineValue(Overview)</strong>
+                                <small>@GetClockDetail(Overview)</small>
+                            </article>
+                            <article>
+                                <span>Blocker</span>
+                                <strong>@BuildBlockerValue(Overview)</strong>
+                                <small>@BuildBlockerSupportText(Overview)</small>
+                            </article>
+                            <article>
+                                <span>Next</span>
+                                <strong>@BuildNextMoveValue(Overview)</strong>
+                                <small>@BuildNextMoveSupportText(Overview)</small>
+                            </article>
+                        </div>
+
+                        <div class="dashboard-sections">
+                            <article class="dashboard-note">
+                                <p class="card-label">Why now</p>
+                                <p class="dashboard-note-text">@(SelectedQueueItem is null ? "Active in the current queue." : GetQueueReasonLabel(SelectedQueueItem.QueueReason))</p>
+                            </article>
+                            <article class="dashboard-note">
+                                <p class="card-label">Basis</p>
+                                <div class="dashboard-note-token-list" aria-label="Decision basis inputs">
+                                    @foreach (var basisItem in BuildDecisionBasisItems(Overview))
+                                    {
+                                        <span class="dashboard-note-token">@basisItem</span>
+                                    }
+                                </div>
+                            </article>
+                            <article class="dashboard-note">
+                                <p class="card-label">Next step</p>
+                                <p class="dashboard-note-text">@NormalizeFactForDisplay(Overview.DownstreamAction, "No downstream action")</p>
+                            </article>
+                        </div>
+                    </section>
+
+                    <section class="dashboard-card dashboard-timeline">
+                        <div class="card-heading">
+                            <p class="card-label">Timeline</p>
+                            <h2>What happened and when</h2>
+                            <p class="card-copy">Recent sequence in local time.</p>
+                        </div>
+                        <ol class="dashboard-timeline-list">
+                            @for (var index = 0; index < Timeline.Events.Count; index++)
+                            {
+                                var evt = Timeline.Events[index];
+                                var isLatest = index == Timeline.Events.Count - 1;
+
+                                <li class="dashboard-timeline-item @(isLatest ? "latest" : null)">
+                                    <div class="dashboard-timeline-rail" aria-hidden="true">
+                                        <span class="dashboard-timeline-dot"></span>
+                                    </div>
+                                    <div class="dashboard-timeline-content">
+                                        <div class="dashboard-timeline-stamp">
+                                            <time datetime="@evt.TimestampUtc.ToString("O")">@FormatTimelineTimestamp(evt.TimestampUtc)</time>
+                                            <span class="timeline-event-type">@GetTimelineEventLabel(evt.EventType)</span>
+                                            @if (isLatest)
+                                            {
+                                                <span class="timeline-marker">Latest update</span>
+                                            }
+                                        </div>
+                                        <p>@BuildTimelineSummary(evt)</p>
+                                    </div>
+                                </li>
+                            }
+                        </ol>
+                    </section>
+                }
+            </section>
+
+        </div>
+    }
+    </div>
+</div>
+
+@code {
+    private bool IsBriefExpanded { get; set; }
+
+    private bool IsDarkTheme => string.Equals(ThemeController.Preference, ShellThemeController.Dark, StringComparison.Ordinal);
+
+    private void ToggleTheme()
+    {
+        ThemeController.SetPreference(IsDarkTheme ? ShellThemeController.Light : ShellThemeController.Dark);
+    }
+
+    private void ToggleBrief()
+    {
+        IsBriefExpanded = !IsBriefExpanded;
+    }
+
+    private Task HandleQueueViewChanged(ChangeEventArgs args)
+    {
+        var view = args.Value?.ToString();
+        if (string.IsNullOrWhiteSpace(view))
+        {
+            return Task.CompletedTask;
+        }
+
+        return ChangeQueueViewAsync(view);
+    }
+
+    private Task ReturnToAllMattersAsync() => ChangeQueueViewAsync(MatterQueueViews.All);
+
+    private string GetThemeToggleLabel() =>
+        IsDarkTheme ? "Switch to light mode" : "Switch to dark mode";
+
+    private string GetQueueResultsText()
+    {
+        var count = MatterQueue?.Items.Count ?? 0;
+        return count == 1 ? "Showing 1 matter" : $"Showing {count} matters";
+    }
+}

@@ -1,0 +1,29 @@
+{
+  "baseline_version": "phase4-operational-baseline.v1",
+  "environment": "local-aspire-single-node",
+  "retained_manifest": "diagnostics/retained-evidence.json",
+  "source_evidence": {
+    "release_summary": "diagnostics/phaseA/phase4/evidence/20260312T044425Z/summary.txt",
+    "stress_summary": "diagnostics/phaseA/phase4/evidence/20260312T034818Z/summary.txt",
+    "soak_summary": "diagnostics/phaseA/phase4/evidence/20260312T034843Z/summary.txt"
+  },
+  "retained_expectations": {
+    "release_bounded_load_p95_latency_ms": 444.116,
+    "release_backlog_recovery_drain_seconds": 1,
+    "release_terminal_failure_verified": true,
+    "diagnostic_stress_p95_latency_ms": 1133.994,
+    "diagnostic_stress_p99_latency_ms": 1136.053,
+    "diagnostic_soak_p95_latency_ms": 194.335
+  },
+  "regression_thresholds": {
+    "latency_regression_multiplier": 1.25,
+    "drain_seconds_regression": 2,
+    "terminal_failure_must_remain_verified": true
+  },
+  "notes": [
+    "This baseline is a regression guardrail for the pre-UI backbone polish pass.",
+    "Retained evidence locations are also indexed in diagnostics/retained-evidence.json.",
+    "Material worsening is currently defined as a 25% latency increase or more than two additional drain seconds.",
+    "Broader architectural opportunities should be captured in review notes, not implemented from this baseline."
+  ]
+}

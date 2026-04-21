@@ -1,0 +1,11 @@
+@Sentinel.Api_HostAddress = http://localhost:5022
+
+GET {{Sentinel.Api_HostAddress}}/todos/
+Accept: application/json
+
+###
+
+GET {{Sentinel.Api_HostAddress}}/todos/1
+Accept: application/json
+
+###
