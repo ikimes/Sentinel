@@ -123,6 +123,30 @@ Run the test project:
 just test
 ```
 
+## Configuration And Local Defaults
+
+Sentinel is set up so other developers can launch it locally without needing any personal or deployment-specific secrets from this repository.
+
+Repository-safe defaults:
+
+- localhost-only URLs and launch profiles
+- sample database and broker names
+- clearly fake placeholder passwords such as `example-password`
+- replay-backed API mode for faster local UI work
+
+Override with environment variables when needed:
+
+- `ConnectionStrings__compliancedb`
+- `ConnectionStrings__compliancedb_admin`
+- `ConnectionStrings__messaging`
+- `Sentinel__DbAppRolePassword`
+
+Practical guidance:
+
+- use the committed defaults for local exploration and UI iteration
+- use environment variables for any non-local, shared, or deployment-like setup
+- do not replace sample placeholders in tracked files with real credentials
+
 ## Verification Scripts
 
 The trusted-backbone diagnostics live under `diagnostics/phaseA/`.
