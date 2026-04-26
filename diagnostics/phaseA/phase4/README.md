@@ -79,7 +79,7 @@ Important inputs:
 
 - `GET /api/compliance/check/{requestId}`
   - Returns `404` for unknown requests.
-  - Returns `in_flight` while a dispatch record exists but no terminal ledger row exists yet.
+  - Returns `accepted` while a dispatch record exists but no terminal ledger row exists yet.
   - Returns terminal `processed` or `failed` from `compliance_ledger.events`.
 - `GET /api/diagnostics/readiness`
   - Returns operator-grade readiness details for API, PostgreSQL, RabbitMQ, outbox/inbox counts, dispatch count, error queue depth, and latest persisted worker signal timestamps.

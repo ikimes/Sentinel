@@ -25,13 +25,11 @@ Retention defaults:
   - first canonical Phase A proof after the `phaseA` migration where needed
   - legacy-wrapper compatibility proof where needed
   - MassTransit/Rabbit compatibility migration proof
-- Move non-canonical but still useful artifacts into `diagnostics/archive/`
+- Move non-canonical but still useful artifacts into an archive location only when that archive is intentionally kept in Git
 - Delete only artifacts that are:
   - unreferenced
   - clearly partial or aborted
   - superseded by a newer retained proof of the same kind
 
-Authoritative retained map:
-
-- `diagnostics/retained-evidence.json`
+Generated evidence bundles, snapshots, and local run artifacts are intentionally omitted from Git unless a specific baseline artifact is promoted into the repository.
 

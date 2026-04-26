@@ -33,19 +33,13 @@ The PostgreSQL restart companion verifier writes under:
 
 - `diagnostics/phaseA/phase4/evidence/<utc-stamp>-db-restart/`
 
-## Retained Evidence
+## Retention Policy
 
-Canonical retained evidence is indexed at:
-
-- `diagnostics/retained-evidence.json`
-
-Retention policy:
+The diagnostics retention policy lives at:
 
 - `diagnostics/retention-policy.md`
 
-Historical archive:
-
-- `diagnostics/archive/README.md`
+The repository currently keeps curated baseline files in place and intentionally omits generated evidence bundles, snapshots, and local run artifacts from Git.
 
 ## Hardening Diagnostics
 

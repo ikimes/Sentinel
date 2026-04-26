@@ -38,14 +38,6 @@ Phase 3 support and investigation bundles are now split intentionally:
 - new runs from `run_ab_isolation.sh` write to `diagnostics/phaseA/phase3/ab-isolation/`
 - historical Phase 3 support bundles now also live under `diagnostics/phaseA/phase3/`
 
-Retained evidence map:
-
-- `diagnostics/retained-evidence.json`
-
 Retention policy:
 
 - `diagnostics/retention-policy.md`
-
-Historical archive:
-
-- `diagnostics/archive/README.md`

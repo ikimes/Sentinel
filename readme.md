@@ -78,6 +78,13 @@ The current web experience centers on one primary dashboard flow backed by the m
 - RabbitMQ
 - Entity Framework Core
 
+## Prerequisites
+
+- .NET 10 SDK
+- Docker Desktop running, for Aspire-hosted PostgreSQL/RabbitMQ resources and Testcontainers-backed integration tests
+- `just`, for the documented local workflow commands
+- `curl` and `jq`, for diagnostics scripts
+
 ## Running Locally
 
 Preferred local UI workflow:
@@ -121,6 +128,12 @@ Run the test project:
 
 ```bash
 just test
+```
+
+The full test project includes Testcontainers-backed PostgreSQL integration tests, so Docker Desktop must be installed and running. Without Docker, the logic-level tests can still be run with:
+
+```bash
+dotnet test Sentinel.Api.Tests/Sentinel.Api.Tests.csproj --filter "FullyQualifiedName!~ComplianceApiTests"
 ```
 
 ## Configuration And Local Defaults

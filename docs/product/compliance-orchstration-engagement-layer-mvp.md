@@ -23,13 +23,13 @@ Former `Phase 2`, `Phase 3`, and `Phase 4` remain in the repository as operation
 
 ## Current State
 
-As of March 12, 2026, the trusted backbone foundation is implemented and green:
+As of March 12, 2026, the trusted backbone foundation is implemented with verification tooling and retained local baseline expectations:
 
 - RabbitMQ + PostgreSQL resources run under Aspire AppHost orchestration.
 - API ingress persists durable dispatch through MassTransit transactional outbox.
 - Worker consumption on queue `compliance` is replay-safe and ledger-backed.
 - Append-only ledger writes and terminal failure handling are implemented.
-- Foundation verification lanes are green:
+- Foundation verification lanes exist for:
   - correctness
   - resilience
   - bounded operational confidence
@@ -49,7 +49,7 @@ The backend also now has a UI-ready preparation slice in place:
 - `auto` and `ensurecreated` remain explicit compatibility modes for transition and local proof paths
 - Postgres-backed API integration coverage exists for migration startup, status behavior, actor propagation, and recent/history reads
 
-This means the backbone is no longer the experimental part of the program. It is the base layer for the next COEL phases.
+This means the backbone is treated as the base layer for the next COEL phases, while local verification still depends on running the documented diagnostics in an environment with the required .NET SDK and a running Docker engine.
 
 ---
 
@@ -186,7 +186,7 @@ Canonical support tooling:
 - `diagnostics/phaseA/phase3/run_ab_isolation.sh`
 
 Current status:
-- green in strict mode with current retained evidence
+- verifier tooling is present; local pass/fail status depends on the current diagnostic run
 
 ### Foundation.A4 Operational Confidence
 
