@@ -161,6 +161,6 @@ having count(*) > 1;
 
 ## Operational Notes
 
-- `Sentinel:DbSchemaBootstrapMode` now defaults to `auto`: use EF migrations when they exist, otherwise fall back to `EnsureCreated()` for local/dev bootstrap.
-- Full migrations cutover remains a `Phase B` hardening item.
+- `Sentinel:DbSchemaBootstrapMode` now defaults to `migrate` for the API, Worker, and shared bootstrapper. This is the steady-state migration-first policy.
+- `auto` and `ensurecreated` remain explicit compatibility modes for transition and local proof paths.
 - This runbook is canonical for the trusted backbone foundation only. Forward roadmap planning belongs in `docs/product/compliance-orchstration-engagement-layer-mvp.md`.

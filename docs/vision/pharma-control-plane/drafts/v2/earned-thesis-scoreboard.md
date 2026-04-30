@@ -10,7 +10,7 @@ Related notes:
 
 - `docs/vision/pharma-control-plane/drafts/v2/autonomous-earned-thesis-operating-system.md`
 - `docs/vision/pharma-control-plane/drafts/v2/earned-thesis-plan.md`
-- `docs/todo/engagement-layer-proof-execution-list.md`
+- `docs/archive/execution/engagement-layer-proof-execution-list.md`
 
 ## Purpose
 
@@ -124,7 +124,7 @@ Future cycles should update this file rather than inventing new status language.
 - `status`: `internally-proven`
 - `evidence`:
   - `docs/todo/stage4-matter-contract.md`
-  - `docs/todo/engagement-layer-proof-execution-list.md`
+  - `docs/archive/execution/engagement-layer-proof-execution-list.md`
   - `Sentinel.Api/features/compliance/ComplianceMatterReplayHarness.cs`
   - `Sentinel.Api/features/compliance/Contracts.cs`
   - `Sentinel.Api/features/compliance/ComplianceServices.cs`

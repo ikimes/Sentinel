@@ -12,7 +12,7 @@ Related notes:
 - `docs/vision/pharma-control-plane/drafts/v2/earned-thesis-scoreboard.md`
 - `docs/vision/pharma-control-plane/current/v1/mvp-simulation-harness-and-scenario-pack.md`
 - `docs/vision/pharma-control-plane/current/v1/pilot-acceptance-plan.md`
-- `docs/todo/engagement-layer-proof-execution-list.md`
+- `docs/archive/execution/engagement-layer-proof-execution-list.md`
 
 ## Purpose
 

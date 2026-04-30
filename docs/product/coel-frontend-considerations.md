@@ -8,6 +8,7 @@ Decision date: `2026-03-16`
 Decision:
 
 - Sentinel will use `Blazor` for the first engagement-layer implementation.
+- The Blazor shell now has a working and stable initial MVP.
 - The default product experience remains:
   - matter workspace
   - queue
@@ -61,9 +62,15 @@ Keep these rules:
 
 ## Implementation Direction
 
-For `S3.1` and later frontend work:
+Current implemented baseline:
 
-- build the operator workspace in `Blazor`
+- the operator workspace is implemented in `Blazor`
+- the shell consumes the matter queue, overview, and timeline API surfaces
+- the initial MVP is stable enough to serve as the engagement-layer baseline
+- light/dark theme support is implemented through reusable shell styling tokens and an in-shell toggle
+
+For later frontend work:
+
 - keep the current API and projection contracts matter-first
 - prefer straightforward Blazor components for workspace, queue, timeline, and context surfaces
 - reserve JS interop for the expert graph layer and other clearly visualization-specific needs

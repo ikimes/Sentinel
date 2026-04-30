@@ -49,6 +49,13 @@ The backend also now has a UI-ready preparation slice in place:
 - `auto` and `ensurecreated` remain explicit compatibility modes for transition and local proof paths
 - Postgres-backed API integration coverage exists for migration startup, status behavior, actor propagation, and recent/history reads
 
+The first engagement-layer UI is also implemented:
+
+- the Blazor shell has a working and stable initial MVP
+- the shell consumes the matter queue, overview, and timeline projections
+- the shell keeps the proof experience anchored on the locked matter contract and deterministic replay scenarios
+- tokenized light/dark theme support and an in-shell display toggle are in place
+
 This means the backbone is treated as the base layer for the next COEL phases, while local verification still depends on running the documented diagnostics in an environment with the required .NET SDK and a running Docker engine.
 
 ---
@@ -99,10 +106,16 @@ Expected work:
 ### Phase C — Engagement Layer MVP
 
 Purpose:
-- build the first internal UI and human interaction surfaces on top of the trusted backbone
+- stabilize and extend the first internal UI and human interaction surfaces on top of the trusted backbone
 
-Expected work:
-- consume the existing request status, recent-request, and request-history backend surfaces in a first narrow UI
+Current implemented baseline:
+- working Blazor matter workspace shell
+- matter queue, overview, and timeline consumption
+- deterministic context for the locked proof scenarios
+- internal actor-header seam for future auth replacement
+- stable initial visual system with light/dark theme support
+
+Expected next work:
 - operator and reviewer workflows
 - internal review/task experiences
 - ledger visibility and outcome presentation
@@ -208,7 +221,7 @@ Supporting tooling:
 
 Deferred beyond Phase A:
 - broad production hardening items in `Phase B`
-- frontend UI implementation in `Phase C` using the now-selected `Blazor` direction for the engagement layer
+- engagement-layer expansion beyond the stable initial Blazor MVP
 - AI/LLM workflow expansion
 - compliance dashboards and advanced reporting
 - richer engagement-layer orchestration

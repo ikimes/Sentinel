@@ -19,15 +19,14 @@ Historical references may still mention `Phase 2`, `Phase 3`, and `Phase 4`, but
 | Browse the active product/roadmap docs | `docs/product/README.md` |
 | Browse the implementation/runtime docs | `docs/architecture/README.md` |
 | Explore versioned product vision packages | `docs/vision/README.md` |
-| Explore frontend direction and future engagement work | `docs/product/coel-frontend-considerations.md` |
-| Review supporting reference material | `docs/reference/README.md` |
+| Explore the Blazor shell and engagement-layer UI direction | `docs/product/coel-frontend-considerations.md` |
 
 ## Secondary Material
 
 These directories are retained for traceability and local workflow support, but they are not the recommended starting point for a first review of the repo:
 
 - `docs/todo/`
-  - active execution notes and implementation artifacts
+  - active implementation contracts that still guide the current proof shape
 - `docs/archive/`
   - retained historical analysis and completed refinement notes
 - `docs/prompts/`
@@ -39,12 +38,10 @@ These directories are retained for traceability and local workflow support, but 
   - runtime, messaging, and implementation-facing system docs
 - `docs/product/`
   - roadmap, phase model, and engagement-layer/product direction
-- `docs/reference/`
-  - supporting guidance and secondary reference material
 - `docs/prompts/`
   - local prompt templates and execution guidance
 - `docs/todo/`
-  - active execution and planning artifacts retained as working history
+  - active implementation contracts retained outside the archive
 - `docs/archive/`
   - historical working notes retained for traceability
 - `docs/vision/`

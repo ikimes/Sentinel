@@ -12,6 +12,8 @@ Use this archive for documents that are:
 
 - `analysis/`
   - historical project-readiness and verification-gap assessments
+- `execution/`
+  - completed execution boards, slice packets, proof checkpoints, and implementation planning notes
 - `ui/`
   - completed inspection and refinement notes for the early Blazor shell
 
@@ -23,4 +25,4 @@ Archive rather than delete when a document still helps explain:
 - what was learned during execution
 - how the project evolved
 
-Active roadmap, execution, and package docs should remain outside this directory.
+Active roadmap, implementation contracts, and package docs should remain outside this directory.
